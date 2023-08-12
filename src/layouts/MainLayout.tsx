@@ -14,11 +14,11 @@ const useStyles = createStyles((theme) => ({
     justifyContent: "space-between",
   },
   left: {
-    width: "240px",
+    width: "280px",
     height: "100%",
   },
   right: {
-    width: "860px",
+    width: "900px",
     height: "100%",
   },
   appshell: {
@@ -38,7 +38,7 @@ export const MainLayout: FC<MainLayoutProps> = ({ children }) => {
       <Box className={classes.left}>
         <SideBar />
       </Box>
-      <Box className={classes.right}></Box>
+      <Box className={classes.right}>{children}</Box>
     </Box>
   );
 };

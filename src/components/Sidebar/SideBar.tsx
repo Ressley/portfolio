@@ -44,9 +44,8 @@ const useStyles = createStyles((theme) => ({
     gap: "20px",
     alignItems: "center",
     background: "#1E1F1F",
-    borderRadius: "40px",
+    borderRadius: "25px",
     border: "2px solid #393838",
-    width: "100%",
     height: "100%",
   },
   upper: {
