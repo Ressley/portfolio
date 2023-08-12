@@ -17,31 +17,31 @@ const contacts = [
   {
     label: "Email",
     text: "example@gmail.com",
-    icon: <IconMail color="#FFDB70" size={32} />,
+    icon: <IconMail color="#FFDB70" size={28} />,
   },
   {
     label: "Phone",
     text: "+7 708 279 5707",
-    icon: <IconDeviceMobile color="#FFDB70" size={32} />,
+    icon: <IconDeviceMobile color="#FFDB70" size={28} />,
   },
   {
     label: "Github",
     text: "github.com/baurzhanson",
-    icon: <IconBrandGithub color="#FFDB70" size={32} />,
+    icon: <IconBrandGithub color="#FFDB70" size={28} />,
   },
   {
     label: "Location",
     text: "Astana, Kazakhstan",
-    icon: <IconMapPinPin color="#FFDB70" size={32} />,
+    icon: <IconMapPinPin color="#FFDB70" size={28} />,
   },
 ];
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     display: "flex",
-    padding: "40px",
+    padding: "30px 25px",
     flexDirection: "column",
-    gap: "40px",
+    gap: "20px",
     alignItems: "center",
     background: "#1E1F1F",
     borderRadius: "40px",
@@ -59,7 +59,8 @@ const useStyles = createStyles((theme) => ({
   center: {
     display: "flex",
     flexDirection: "column",
-    gap: "16px",
+    width: "100%",
+    gap: "24px",
   },
   end: {
     display: "flex",
@@ -106,9 +107,9 @@ export const SideBar: FC = () => {
         })}
       </Box>
       <Box className={classes.end}>
-        <IconBrandInstagram color="#9F9F9F" size={32} />
-        <IconBrandTelegram color="#9F9F9F" size={32} />
-        <IconBrandTwitter color="#9F9F9F" size={32} />
+        <IconBrandInstagram color="#9F9F9F" size={24} />
+        <IconBrandTelegram color="#9F9F9F" size={24} />
+        <IconBrandTwitter color="#9F9F9F" size={24} />
       </Box>
     </Box>
   );

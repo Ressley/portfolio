@@ -3,8 +3,8 @@ import { FC } from "react";
 
 const useStyles = createStyles((theme) => ({
   avatar: {
-    width: "180px",
-    height: "180px",
+    width: "160px",
+    height: "160px",
     borderRadius: "40px",
     border: "2px solid #393838",
     background: "#2B2B2B",

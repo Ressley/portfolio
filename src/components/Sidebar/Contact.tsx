@@ -5,13 +5,13 @@ const useStyles = createStyles((theme) => ({
   wrapper: {
     display: "flex",
     gap: "10px",
-    padding: "10px",
+    width: "100%",
   },
   left: {
     background: "#2B2B2B",
-    width: "64px",
-    height: "64px",
-    borderRadius: "24px",
+    width: "46px",
+    height: "46px",
+    borderRadius: "14px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -19,17 +19,17 @@ const useStyles = createStyles((theme) => ({
   right: {
     display: "flex",
     flexDirection: "column",
-    height: "64px",
+    height: "46px",
     justifyContent: "center",
   },
   label: {
     color: "#9F9E9F",
-    fontSize: "20px",
+    fontSize: "16px",
     fontWeight: 600,
   },
   text: {
     color: "#FAFAFA",
-    fontSize: "16px",
+    fontSize: "14px",
     fontWeight: 400,
   },
 }));

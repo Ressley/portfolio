@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
 export const MainNavbar: FC = () => {
   const { classes } = useStyles();
   return (
-    <Navbar className={classes.navbar} width={{ base: 480 }}>
+    <Navbar className={classes.navbar} width={{ base: "30%" }}>
       <Navbar.Section grow>
         <SideBar />
       </Navbar.Section>
