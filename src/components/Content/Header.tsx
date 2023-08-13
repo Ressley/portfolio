@@ -1,5 +1,5 @@
 import { Box, createStyles, Text } from "@mantine/core";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -11,25 +11,46 @@ const useStyles = createStyles((theme) => ({
     background: "#2B2B2B",
     borderRadius: "0px 25px",
   },
-  text: {
+  link: {
     color: "white",
-    ":hover": {
+    cursor: "pointer",
+    "&:hover": {
+      opacity: "60%",
+    },
+  },
+
+  linkActive: {
+    "&, &:hover": {
       color: "#FFDB70",
     },
-    cursor: "pointer",
   },
 }));
 
 export interface HeaderProps {
+  setActive: (link: string) => void;
   buttons: { link: string; label: string }[];
 }
 
-export const ContentHeader: FC<HeaderProps> = ({ buttons }) => {
-  const { classes } = useStyles();
+export const ContentHeader: FC<HeaderProps> = ({ setActive, buttons }) => {
+  const { classes, cx } = useStyles();
+  const [active, setActiveInner] = useState<string>(buttons[0].link);
   return (
     <Box className={classes.header}>
       {buttons.map((item) => {
-        return <Text className={classes.text}> {item.label}</Text>;
+        return (
+          <Text
+            className={cx(classes.link, {
+              [classes.linkActive]: active === item.link,
+            })}
+            onClick={() => {
+              setActive(item.link);
+              setActiveInner(item.link);
+            }}
+          >
+            {" "}
+            {item.label}
+          </Text>
+        );
       })}
     </Box>
   );

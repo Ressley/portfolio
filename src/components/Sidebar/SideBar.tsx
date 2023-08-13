@@ -38,6 +38,7 @@ const contacts = [
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
+    position: "fixed",
     display: "flex",
     padding: "30px 25px",
     flexDirection: "column",
@@ -46,7 +47,6 @@ const useStyles = createStyles((theme) => ({
     background: "#1E1F1F",
     borderRadius: "25px",
     border: "2px solid #393838",
-    height: "100%",
   },
   upper: {
     display: "flex",

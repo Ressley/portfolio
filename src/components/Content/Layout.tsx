@@ -1,5 +1,5 @@
 import { Box, Button, createStyles, Title } from "@mantine/core";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
 import { ContentHeader } from "./Header";
 
 const useStyles = createStyles((theme) => ({
@@ -16,7 +16,6 @@ const useStyles = createStyles((theme) => ({
 
   inner: {
     width: "100%",
-    padding: "20px",
   },
 
   header: {
@@ -26,52 +25,47 @@ const useStyles = createStyles((theme) => ({
   },
 
   title: {
-    padding: "20px",
+    padding: "20px 0",
     color: "white",
+  },
+
+  title_wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    padding: "0 20px",
+  },
+
+  line: {
+    height: "10px",
+    width: "50px",
+    borderRadius: "5px",
+    background: "#FFDB70",
   },
 }));
 
-const buttons = [
-  {
-    link: "about",
-    label: "About",
-    title: "About Me",
-  },
-  {
-    link: "resume",
-    label: "Resume",
-    title: "About Me",
-  },
-  {
-    link: "portfolio",
-    label: "Portfolio",
-    title: "About Me",
-  },
-  {
-    link: "blog",
-    label: "Blog",
-    title: "About Me",
-  },
-  {
-    link: "contact",
-    label: "Contact",
-    title: "About Me",
-  },
-];
-
 export interface LayoutProps {
+  setActive: (link: string) => void;
+  buttons: { link: string; label: string; title: string }[];
   children: ReactNode;
 }
 
-export const Layout: FC<LayoutProps> = ({ children }) => {
+export const Layout: FC<LayoutProps> = ({ setActive, buttons, children }) => {
+  const [title, setTitle] = useState<string>(buttons[0].title);
   const { classes } = useStyles();
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.header}>
-        <Box className={classes.title}>
-          <Title> {buttons[0].title}</Title>
+        <Box className={classes.title_wrapper}>
+          <Title className={classes.title}> {title}</Title>
+          <Box className={classes.line}></Box>
         </Box>
-        <ContentHeader buttons={buttons} />
+        <ContentHeader
+          buttons={buttons}
+          setActive={(link: string) => {
+            setActive(link);
+            setTitle(buttons.filter((button) => button.link === link)[0].title);
+          }}
+        />
       </Box>
       <Box className={classes.inner}>
         <Box p={"20px"}>{children}</Box>
