@@ -29,8 +29,8 @@ const useStyles = createStyles((theme) => ({
     borderRadius: "20px",
     backgroundColor: "#ffd86d",
     border: "2px solid gray",
-    width: "8px",
-    height: "8px",
+    width: "24px",
+    height: "24px",
   },
   iconBorder: {
     borderRadius: "5px",
@@ -38,8 +38,8 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: "32px",
-    height: "32px",
+    width: "40px",
+    height: "40px",
   },
   bigwrapper: {
     padding: 20,
@@ -52,17 +52,21 @@ const useStyles = createStyles((theme) => ({
     color: "#fafafa",
     fontSize: 28,
     fontWeight: 800,
+    padding: "0 0 0 33px"
   },
   title: {
     color: "white",
     fontSize: 20,
     fontWeight: 600,
+    padding: "0 0 0 10px"
   },
   years: {
     color: "#ceb25a",
+    padding: "0 0 0 10px"
   },
   description: {
     color: "#d6d6d6",
+    padding: "0 0 0 10px"
   },
 }));
 
@@ -84,7 +88,7 @@ export const ResumeLine: FC<ResumeLineProps> = ({ data }) => {
       className={classes.bigwrapper}
       active={4}
       lineWidth={1}
-      bulletSize={32}
+      bulletSize={48}
       color="gray"
       reverseActive
     >
@@ -94,7 +98,7 @@ export const ResumeLine: FC<ResumeLineProps> = ({ data }) => {
         bullet={
           <Box className={classes.iconWrapper}>
             <Box className={classes.iconBorder}>
-              <IconBook size="16px" color="#ffd86d" />
+              <IconBook size="32px" color="#ffd86d" />
             </Box>
           </Box>
         }

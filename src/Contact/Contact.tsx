@@ -8,6 +8,7 @@ import {
   TextInput,
   Textarea,
 } from "@mantine/core";
+import { IconBrandTelegram } from "@tabler/icons-react";
 import { FC } from "react";
 import IFrame from "react-iframe";
 //import { ContactMap} from "./ContactMap"
@@ -68,10 +69,27 @@ const useStyles = createStyles((theme) => ({
     radius: "lg",
     size: "lg",
   },
-  sendMessage:{
-      alignItems:'right' ,
-      justifyContent: "right"
-  }
+
+  buttonWrapper: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "end",
+  },
+
+  sendMessages: {
+    height: "60px",
+    borderRadius: "22px",
+    textAlign: "right",
+    background: "#21202230",
+    border: "2px solid #383838",
+    color: "#bda159",
+    "&:focus-within": {
+      borderColor: "#FFFFFF50",
+    },
+    "&:hover": {
+      backgroundColor: "#212022",
+    },
+  },
 }));
 
 export const Contact: FC = () => {
@@ -100,9 +118,6 @@ export const Contact: FC = () => {
         <Box className={classes.form}>
           <TextInput className={classes.input} placeholder={"Full Name"} />
           <TextInput className={classes.input} placeholder={"Email Address"} />
-          {/* <Box className={classes.name}> */}
-          {/* </Box> */}
-          {/* <Box className={classes.email}>Email Address</Box> */}
         </Box>
         <Textarea
           className={classes.textarea}
@@ -111,11 +126,20 @@ export const Contact: FC = () => {
           maxRows={10}
           placeholder={"Your Messages"}
         ></Textarea>
-        {/* <Box className={classes.message}>Your Messages</Box> */}
       </Box>
-      <Button className={classes.sendMessage}>
+      <Box className={classes.buttonWrapper}>
+        <Button
+          className={classes.sendMessages}
+          leftIcon={<IconBrandTelegram size="26px" color="#bda159" />}
+          type="submit"
+          component="a"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://apple.com"
+        >
           Send Messages
-      </Button>
+        </Button>
+      </Box>
     </Box>
   );
 };
