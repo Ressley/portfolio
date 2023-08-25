@@ -6,6 +6,11 @@ const useStyles = createStyles((theme) => ({
     display: "flex",
     gap: "10px",
     width: "100%",
+    cursor: "pointer",
+    "&:hover": {
+      background: "#272929",
+      borderRadius: "20px",
+    },
   },
   left: {
     background: "#2B2B2B",
@@ -38,12 +43,18 @@ export interface ContactProps {
   label: string;
   text: string;
   icon: ReactNode;
+  link: string;
 }
 
-export const Contact: FC<ContactProps> = ({ label, text, icon }) => {
+export const Contact: FC<ContactProps> = ({ label, text, icon, link }) => {
   const { classes } = useStyles();
   return (
-    <Box className={classes.wrapper}>
+    <Box
+      className={classes.wrapper}
+      onClick={() => {
+        window.open(link, "_blank", "noopener, noreferrer");
+      }}
+    >
       <Box className={classes.left}>{icon}</Box>
       <Box className={classes.right}>
         <Text className={classes.label}>{label}</Text>

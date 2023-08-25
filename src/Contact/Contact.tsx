@@ -7,9 +7,14 @@ import {
   Input,
   TextInput,
   Textarea,
+  Loader,
+  Modal,
 } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { IconBrandTelegram } from "@tabler/icons-react";
-import { FC } from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { FC, useState } from "react";
 import IFrame from "react-iframe";
 //import { ContactMap} from "./ContactMap"
 
@@ -92,10 +97,54 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
+export interface Form {
+  full_name: string;
+  email: string;
+  message: string;
+}
+
 export const Contact: FC = () => {
   const { classes } = useStyles();
+  const [success, setSuccess] = useState<boolean>(false);
+  const form = useForm({
+    initialValues: {
+      full_name: "",
+      email: "",
+      message: "",
+    },
+  });
+
+  const sendMessage = async (data: Form) => {
+    await axios.post(
+      "https://api.telegram.org/bot6023906201:AAEvPYPTEcr9bSTJlTpjDI_HPAMyL-yW8Mk/sendMessage",
+      {
+        chat_id: "394912103",
+        text: `Full name: ${data.full_name}\nEmail: ${data.email}\nMessage: ${data.message}`,
+      }
+    );
+  };
+
+  const mutation = useMutation(
+    async (data: Form) => {
+      await sendMessage(data);
+    },
+    {
+      onSuccess: () => {
+        setSuccess(true);
+      },
+    }
+  );
+
   return (
     <Box className={classes.wrapper}>
+      <Modal
+        opened={success}
+        onClose={() => {
+          setSuccess(false);
+        }}
+      >
+        Hello
+      </Modal>
       <Box className={classes.map}>
         <IFrame
           className={classes.iframe}
@@ -108,38 +157,53 @@ export const Contact: FC = () => {
           }
         ></IFrame>
       </Box>
-      <Box className={classes.formWrapper}>
-        {
-          <Text color="white" className={classes.contactForm}>
-            {" "}
-            Contact Form{" "}
-          </Text>
-        }
-        <Box className={classes.form}>
-          <TextInput className={classes.input} placeholder={"Full Name"} />
-          <TextInput className={classes.input} placeholder={"Email Address"} />
+
+      <form onSubmit={form.onSubmit((values) => mutation.mutate(values))}>
+        <Box className={classes.formWrapper}>
+          {
+            <Text color="white" className={classes.contactForm}>
+              {" "}
+              Contact Form{" "}
+            </Text>
+          }
+          <Box className={classes.form}>
+            <TextInput
+              className={classes.input}
+              {...form.getInputProps("full_name")}
+              placeholder={"Full Name"}
+            />
+            <TextInput
+              className={classes.input}
+              {...form.getInputProps("email")}
+              placeholder={"Email Address"}
+            />
+          </Box>
+          <Textarea
+            className={classes.textarea}
+            autosize
+            minRows={4}
+            maxRows={10}
+            {...form.getInputProps("message")}
+            placeholder={"Your Messages"}
+          ></Textarea>
         </Box>
-        <Textarea
-          className={classes.textarea}
-          autosize
-          minRows={4}
-          maxRows={10}
-          placeholder={"Your Messages"}
-        ></Textarea>
-      </Box>
-      <Box className={classes.buttonWrapper}>
-        <Button
-          className={classes.sendMessages}
-          leftIcon={<IconBrandTelegram size="26px" color="#bda159" />}
-          type="submit"
-          component="a"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://apple.com"
-        >
-          Send Messages
-        </Button>
-      </Box>
+        <Box className={classes.buttonWrapper}>
+          <Button
+            type="submit"
+            className={classes.sendMessages}
+            disabled={mutation.isLoading}
+            leftIcon={
+              mutation.isLoading ? (
+                <Loader />
+              ) : (
+                <IconBrandTelegram size="26px" color="#bda159" />
+              )
+            }
+          >
+            Send Messages
+          </Button>
+        </Box>
+      </form>
     </Box>
   );
 };
