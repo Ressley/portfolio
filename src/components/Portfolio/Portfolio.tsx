@@ -1,22 +1,90 @@
-import { FC } from "react";
-import { createStyles } from "@mantine/core";
-/* import { PortfolioCard} from "./PortfolioCard"
- */
-const useStyles = createStyles ((theme) => ({
+import { FC, useState } from "react";
+import { SimpleGrid, createStyles, Box, Text } from "@mantine/core";
+import { PortfolioCard } from "./PortfolioCard";
 
-}))
-/* 
-const data = {
-  picture: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.guardianglass.com%2Fap%2Fen%2Fprojects%2Fproject-details%2Fastana-expo&psig=AOvVaw07m48dgCOK0feJTe6UdXPB&ust=1693054346124000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPit7Ijt94ADFQAAAAAdAAAAABAJ",
-  title: "Expo 2017",
-  type: "Web Design"
+const useStyle = createStyles((theme) => ({
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    color: "white",
+    gap: "16px",
+  },
 
-} */
-/* 
+  category: {
+    cursor: "pointer",
+  },
+}));
+
+const cards = [
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "Web Design",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "Web Design",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "Web Design",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "GameDev",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "GameDev",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "Web Design",
+  },
+  {
+    picture:
+      "https://preview.thenewsmarket.com/Previews/TNML/StillAssets/1920x1080/474781.jpg",
+    title: "Expo 2017",
+    type: "Web Dev",
+  },
+];
+
 export const Portfolio: FC = () => {
-  const {classes} = useStyles();
+  const { classes } = useStyle();
+  const [type, setType] = useState<string>("All");
+  const types = [
+    "All",
+    ...cards
+      .map((card) => card.type)
+      .filter((type, index, array) => array.indexOf(type) === index),
+  ];
   return (
-    <PortfolioCard card={data}/>
-    
-    )
-}; */
+    <>
+      <Box className={classes.header}>
+        {types.map((type) => (
+          <Text className={classes.category} onClick={() => setType(type)}>
+            {type}
+          </Text>
+        ))}
+      </Box>
+      <SimpleGrid cols={3} spacing={"35px"}>
+        {cards
+          .filter((card) => card.type === type || type === "All")
+          .map((card) => (
+            <PortfolioCard card={card} />
+          ))}
+      </SimpleGrid>
+    </>
+  );
+};
