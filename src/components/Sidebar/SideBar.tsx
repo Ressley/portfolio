@@ -16,23 +16,27 @@ import { Contact } from "./Contact";
 const contacts = [
   {
     label: "Email",
-    text: "example@gmail.com",
+    text: "ayeke12074@gmail.com",
     icon: <IconMail color="#FFDB70" size={28} />,
+    link: "mailto:ayeke12074@gmail.com",
   },
   {
     label: "Phone",
     text: "+7 708 279 5707",
     icon: <IconDeviceMobile color="#FFDB70" size={28} />,
+    link: "tel:+7 (708) 279-57-07",
   },
   {
     label: "Github",
     text: "github.com/baurzhanson",
     icon: <IconBrandGithub color="#FFDB70" size={28} />,
+    link: "https://github.com/baurzhanson",
   },
   {
     label: "Location",
     text: "Astana, Kazakhstan",
     icon: <IconMapPinPin color="#FFDB70" size={28} />,
+    link: "https://www.google.com/maps/place/Astana/@51.1038954,71.1719561,10z/data=!3m1!4b1!4m6!3m5!1s0x424580c47db54609:0x97f9148dddb19228!8m2!3d51.1655126!4d71.4272221!16zL20vMGZuMDg?entry=ttu",
   },
 ];
 
@@ -101,6 +105,7 @@ export const SideBar: FC = () => {
               label={contact.label}
               text={contact.text}
               icon={contact.icon}
+              link={contact.link}
             />
           );
         })}

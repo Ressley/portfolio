@@ -4,15 +4,18 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { Button, MantineProvider, Text } from "@mantine/core";
 import { MainPage } from "./pages/MainPage";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const client = new QueryClient();
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <MantineProvider withNormalizeCSS>
-      <MainPage />
-    </MantineProvider>
+    <QueryClientProvider client={client}>
+      <MantineProvider withNormalizeCSS>
+        <MainPage />
+      </MantineProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,12 @@
-import { Box, createStyles, Text } from "@mantine/core";
+import { Box, createStyles, Text, Title, SimpleGrid } from "@mantine/core";
 import { FC } from "react";
+import {
+  IconChartBar,
+  IconAnalyze,
+  IconTestPipe,
+  IconDeviceVisionPro,
+} from "@tabler/icons-react";
+import { AboutGrid } from "./AboutGrid";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -10,7 +17,37 @@ const useStyles = createStyles((theme) => ({
   text: {
     color: "white",
   },
+  header2: {
+    color: "white",
+    padding: "20px 0",
+  },
+  grid: {
+    color: "cyanide",
+  },
 }));
+
+const doings = [
+  {
+    icon: <IconChartBar color="#FFDB70" size={48} />,
+    label: "Data Analysis",
+    text: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <IconAnalyze color="#FFDB70" size={48} />,
+    label: "Data Science",
+    text: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <IconTestPipe color="#FFDB70" size={48} />,
+    label: "Data Pipelines",
+    text: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <IconDeviceVisionPro color="#FFDB70" size={48} />,
+    label: "Computer Vision",
+    text: "Lorem ipsum dolor sit amet",
+  },
+];
 
 export const About: FC = () => {
   const { classes } = useStyles();
@@ -28,6 +65,22 @@ export const About: FC = () => {
         use. My aim is to bring across your message and identity in the most
         creative way. I created web design for many famous brand companies.
       </Text>
+      <Title order={3} className={classes.header2}>
+        What I'm Doing
+      </Title>
+      <Box className={classes.grid}>
+        <SimpleGrid cols={2}>
+          {doings.map((doing) => {
+            return (
+              <AboutGrid
+                label={doing.label}
+                text={doing.text}
+                icon={doing.icon}
+              />
+            );
+          })}
+        </SimpleGrid>
+      </Box>
     </Box>
   );
 };
